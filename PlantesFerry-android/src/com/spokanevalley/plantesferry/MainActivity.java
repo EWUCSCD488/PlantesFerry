@@ -14,4 +14,4 @@ public class MainActivity
     localAndroidApplicationConfiguration.useGL20 = false;
     initialize(new GameSetup(), localAndroidApplicationConfiguration);
   }
-}
+}// End MainActivity
