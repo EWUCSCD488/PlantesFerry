@@ -1,5 +1,5 @@
 
-textureimages.png
+NewSpriteAtlas.png
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -13,15 +13,15 @@ river
 playerCanoe
   rotate: false
   xy: 226, 1
-  size: 29, 30
-  orig: 29, 30
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 obstruction1
   rotate: false
   xy: 131, 64
-  size: 29, 30
-  orig: 29, 30
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 obstruction2
