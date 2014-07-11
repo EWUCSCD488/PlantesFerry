@@ -1,6 +1,8 @@
 package com.spokanevalley.plantesferry;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -13,6 +15,8 @@ public class Assets
   public static TextureRegion obstruction3;
   public static TextureRegion obstruction4;
   public static TextureRegion river;
+  public static Music backgroundMusic;
+  public static BitmapFont timerFont;
   
   public static void dispose()
   {
@@ -22,6 +26,7 @@ public class Assets
   public static void load()
   {
     atlas = new TextureAtlas(Gdx.files.internal("textureimages.atlas"));
+    backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("sfx/rainbowbunchie.mp3"));
     playerCanoe = atlas.findRegion("playerCanoe");
     river = atlas.findRegion("river");
     obstruction1 = atlas.findRegion("obstruction1");

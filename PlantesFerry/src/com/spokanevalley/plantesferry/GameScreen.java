@@ -11,6 +11,7 @@ public class GameScreen
 {
   private PlantesFerry plantesferry = new PlantesFerry();
   private Stage stage = new Stage();
+
   
   public GameScreen()
   {
@@ -71,6 +72,7 @@ public class GameScreen
   public void show()
   {
     Gdx.input.setInputProcessor(new GestureDetector(this));
+    Assets.backgroundMusic.play();
   }
   
   public boolean tap(float paramFloat1, float paramFloat2, int paramInt1, int paramInt2)

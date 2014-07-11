@@ -22,6 +22,10 @@ public class PlayerCanoe
     setPosition(100.0F, 240.0F - getHeight() / 2.0F);
   }
   
+  /*
+   * Divides the rectangle container into 3 rows.
+   * This allows the user to move between these 3 rows upon swiping.
+   */
   private void moveToLane(int paramInt)
   {
     this.row = paramInt;
@@ -58,6 +62,9 @@ public class PlayerCanoe
     updateBounds();
   }
   
+  /*
+   * Draws the Dinosaur on a raft object.
+   */
   public void draw(SpriteBatch paramSpriteBatch, float paramFloat)
   {
     paramSpriteBatch.setColor(getColor().r, getColor().g, getColor().b, getColor().a);
@@ -82,4 +89,18 @@ public class PlayerCanoe
       moveToLane(1 + this.row);
     }
   }
+  
+  /*
+   * Upon collision, removes the main character from the game.
+   */
+  public void collision(boolean paramBoolean1, boolean paramBoolean2)
+  {
+    clearActions();
+    addAction(Actions.rotateBy(360));
+    addAction(Actions.fadeOut(1.0F));
+    addAction(Actions.removeActor());
+    
+    //TODO: ADD message requesting to play again
+  } // End collision
+  
 }
