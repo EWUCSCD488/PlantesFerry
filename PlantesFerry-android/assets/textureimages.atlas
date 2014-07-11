@@ -24,11 +24,11 @@ obstruction1
   orig: 32, 32
   offset: 0, 0
   index: -1
-obstruction2
+checkpoint
   rotate: false
-  xy: 196, 38
-  size: 27, 26
-  orig: 27, 26
+  xy: 226, 1
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 obstruction3

@@ -72,7 +72,9 @@ public class GameScreen
   public void show()
   {
     Gdx.input.setInputProcessor(new GestureDetector(this));
+    // Set background music and loop it forever
     Assets.backgroundMusic.play();
+    Assets.backgroundMusic.setLooping(true);
   }
   
   public boolean tap(float paramFloat1, float paramFloat2, int paramInt1, int paramInt2)

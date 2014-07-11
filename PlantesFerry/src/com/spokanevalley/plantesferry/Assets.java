@@ -11,11 +11,11 @@ public class Assets
   public static TextureAtlas atlas;
   public static TextureRegion playerCanoe;
   public static TextureRegion obstruction1;
-  public static TextureRegion obstruction2;
-  public static TextureRegion obstruction3;
-  public static TextureRegion obstruction4;
+  public static TextureRegion checkpoint;
   public static TextureRegion river;
   public static Music backgroundMusic;
+  public static Music checkpointSound;
+  public static Music monsterSound;
   public static BitmapFont timerFont;
   
   public static void dispose()
@@ -26,13 +26,14 @@ public class Assets
   public static void load()
   {
     atlas = new TextureAtlas(Gdx.files.internal("textureimages.atlas"));
+    
     backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("sfx/rainbowbunchie.mp3"));
+    checkpointSound = Gdx.audio.newMusic(Gdx.files.internal("sfx/FX051.mp3"));
+    monsterSound = Gdx.audio.newMusic(Gdx.files.internal("sfx/FX051.mp3"));
     playerCanoe = atlas.findRegion("playerCanoe");
     river = atlas.findRegion("river");
     obstruction1 = atlas.findRegion("obstruction1");
-    obstruction2 = atlas.findRegion("obstruction2");
-    obstruction3 = atlas.findRegion("obstruction3");
-    obstruction4 = atlas.findRegion("obstruction4");
+    checkpoint = atlas.findRegion("checkpoint");
   }
 }
 // End Assets

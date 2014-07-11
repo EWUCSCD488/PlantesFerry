@@ -58,8 +58,11 @@ public class RiverMonster
   public void collision(boolean paramBoolean1, boolean paramBoolean2)
   {
     clearActions();
+    Assets.checkpointSound.stop();
+    Assets.checkpointSound.play();
     addAction(Actions.rotateBy(360));
     addAction(Actions.fadeOut(1.0F));
+    
     if ((paramBoolean1) && (paramBoolean2)) {
       addAction(Actions.sequence(Actions.parallel(Actions.rotateBy(-360.0F, 1.5F), Actions.moveBy(200.0F, 200.0F, 1.5F)), Actions.removeActor()));
     }
@@ -72,6 +75,7 @@ public class RiverMonster
     if ((!paramBoolean1) && (!paramBoolean2)) {
       addAction(Actions.sequence(Actions.parallel(Actions.rotateBy(-360.0F, 1.5F), Actions.moveBy(-200.0F, -200.0F, 1.5F)), Actions.removeActor()));
     }
+    
   }
   
   /*

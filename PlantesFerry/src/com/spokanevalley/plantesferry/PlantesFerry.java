@@ -21,7 +21,7 @@ public class PlantesFerry
   public final float row1 = 90.0F;
   public final float row2 = 240.0F;
   public final float row3 = 390.0F;
-  Timer timer = new Timer(60);
+  GameTimer timer = new GameTimer();
   BitmapFont timerFont;
   SpriteBatch batch;
   
@@ -103,15 +103,15 @@ public PlantesFerry()
   {
     paramSpriteBatch.setColor(Color.WHITE);
     super.draw(paramSpriteBatch, paramFloat);
-    
+    // Start current in game timer
 	timer.start();
-	CharSequence temp = "Test";
 	batch = new SpriteBatch();
 	timerFont = new BitmapFont(Gdx.files.internal("fonts/gamefont.fnt"),
 	         Gdx.files.internal("fonts/gamefont_0.png"), false);
 	// Display timer font on screen
 	batch.begin();
 	timerFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+	timerFont.setScale(2.0f);
 	timerFont.draw(batch, timer.toString(), 25, 160);
 	batch.end();
   }

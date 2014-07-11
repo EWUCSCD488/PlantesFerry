@@ -1,6 +1,5 @@
 package com.spokanevalley.plantesferry;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -37,11 +36,12 @@ public class CheckPoint extends Actor{
 	  }
 	  
 	  /*
-	   * Upon collision, removes the Checkpoint with a fade out and 360 rotation.
+	   * Upon collision, Checkpoint adds time to the game timer.
 	   */
 	  public void collision(boolean paramBoolean1, boolean paramBoolean2)
 	  {
 	    clearActions();
+	    Assets.checkpointSound.play();
 	    // TODO: Setup timer restart on collision.
 	  }
 	  
@@ -52,7 +52,7 @@ public class CheckPoint extends Actor{
 	  {
 	    paramSpriteBatch.setColor(getColor().r, getColor().g, getColor().b, getColor().a);
 
-	    paramSpriteBatch.draw(Assets.obstruction1, getX(), getY(), getWidth() / 2.0F, getHeight() / 2.0F, getWidth(), getHeight(), 1.0F, 1.0F, getRotation());
+	    paramSpriteBatch.draw(Assets.checkpoint, getX(), getY(), getWidth() / 2.0F, getHeight() / 2.0F, getWidth(), getHeight(), 1.0F, 1.0F, getRotation());
 	  }
 	  
 	  public Rectangle getBounds()
