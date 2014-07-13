@@ -21,8 +21,14 @@ public class GameTimer {
 	 * Starts the current game timer
 	 */
 	public void start() {
-		        startTime--;
-		        delay(1);
+		if(this.startTime <= 0)
+			this.startTime = 0;
+		this.startTime--;
+		delay(1);
+	}
+	
+	public void addTime() {
+		this.startTime += 300;
 	}
 	
 	/*

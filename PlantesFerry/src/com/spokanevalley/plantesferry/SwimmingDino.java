@@ -5,18 +5,23 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
-public class PlayerCanoe
+public class SwimmingDino
   extends Actor
 {
   private Rectangle bounds = new Rectangle();
   private PlantesFerry plantesferry;
   private int row;
   
-  public PlayerCanoe(PlantesFerry paramPlantesFerry)
+  /*
+   * Constructor for the swimming dinosaur
+   * Starts the character in the middle row
+   * The character can only move up or down between rows
+   */
+  public SwimmingDino(PlantesFerry paramPlantesFerry)
   {
     this.plantesferry = paramPlantesFerry;
-    setWidth(160.0F);
-    setHeight(85.0F);
+    setWidth(Assets.playerDino.getRegionWidth());
+    setHeight(Assets.playerDino.getRegionHeight());
     this.row = 1;
     paramPlantesFerry.getClass();
     setPosition(100.0F, 240.0F - getHeight() / 2.0F);
@@ -63,19 +68,25 @@ public class PlayerCanoe
   }
   
   /*
-   * Draws the Dinosaur on a raft object.
+   * Draws the swimming dinosaur
    */
   public void draw(SpriteBatch paramSpriteBatch, float paramFloat)
   {
     paramSpriteBatch.setColor(getColor().r, getColor().g, getColor().b, getColor().a);
-    paramSpriteBatch.draw(Assets.playerCanoe, getX(), getY(), getWidth() / 2.0F, getHeight() / 2.0F, getWidth(), getHeight(), 1.0F, 1.0F, getRotation());
+    paramSpriteBatch.draw(Assets.playerDino, getX(), getY(), getWidth() / 2.0F, getHeight() / 2.0F, getWidth(), getHeight(), 1.0F, 1.0F, getRotation());
   }
   
+  /*
+   * Get bounds of rectangle container
+   */
   public Rectangle getBounds()
   {
     return this.bounds;
   }
   
+  /* 
+   * Move player up if possible
+   */
   public void tryMoveDown()
   {
     if ((getActions().size == 0) && (this.row != 0)) {
@@ -83,6 +94,9 @@ public class PlayerCanoe
     }
   }
   
+  /*
+   * Move player down if possible
+   */
   public void tryMoveUp()
   {
     if ((getActions().size == 0) && (this.row != 2)) {
@@ -103,4 +117,4 @@ public class PlayerCanoe
     //TODO: ADD message requesting to play again
   } // End collision
   
-}
+} // End class

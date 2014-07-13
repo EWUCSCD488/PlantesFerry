@@ -14,9 +14,9 @@ import com.badlogic.gdx.utils.TimeUtils;
 public class PlantesFerry
   extends Table
 {
-  private long lastSpawnTime = 0L;
-  private Array <RiverMonster> monsters;
-  public PlayerCanoe playerCanoe;
+  private long lastMonsterSpawnTime = 0L;
+  private Array <Monster> monsters;
+  public SwimmingDino playerCanoe;
   private ScrollingBg river;
   public final float row1 = 90.0F;
   public final float row2 = 240.0F;
@@ -31,9 +31,9 @@ public PlantesFerry()
     setClip(true);
     this.river = new ScrollingBg(getWidth(), getHeight());
     addActor(this.river);
-    this.playerCanoe = new PlayerCanoe(this);
+    this.playerCanoe = new SwimmingDino(this);
     addActor(this.playerCanoe);
-    this.monsters = new Array<RiverMonster>();
+    this.monsters = new Array<Monster>();
   }
   /*
    * Spawns a River Monster in one of the three rows randomly.
@@ -51,33 +51,40 @@ public PlantesFerry()
     if (i == 2) {
       row = 390.0F;
     }
-    RiverMonster localRiverMonsters = new RiverMonster(getWidth(), row);
+   
+    Monster localRiverMonsters = new Monster(getWidth(), row);
     this.monsters.add(localRiverMonsters);
     addActor(localRiverMonsters);
-    this.lastSpawnTime = TimeUtils.nanoTime();
+    this.lastMonsterSpawnTime = TimeUtils.nanoTime();
   }
   
   public void act(float paramFloat)
   {	
     super.act(paramFloat);
-    if ((float)(TimeUtils.nanoTime() - this.lastSpawnTime) > 3.0E+009F) {
+    if ((float)(TimeUtils.nanoTime() - this.lastMonsterSpawnTime) > 0.9E+009F) {
       spawnRiverMonster();
     }
-    Iterator<RiverMonster> localIterator = this.monsters.iterator();
+    
+    Iterator<Monster> monsterIterator = this.monsters.iterator();
+
     for (;;)
     {
-      if (!localIterator.hasNext()) {
+      if (!monsterIterator.hasNext()) {
         return;
       }
-      RiverMonster localRiverMonsters = (RiverMonster)localIterator.next();
+      
+      Monster localRiverMonsters = (Monster)monsterIterator.next();
+      
       if (localRiverMonsters.getBounds().x + localRiverMonsters.getWidth() <= 0.0F)
       {
-        localIterator.remove();
+        monsterIterator.remove();
         removeActor(localRiverMonsters);
       }
+
+      
       if (localRiverMonsters.getBounds().overlaps(this.playerCanoe.getBounds()))
       {
-        localIterator.remove();
+        monsterIterator.remove();
         if (localRiverMonsters.getX() > this.playerCanoe.getX())
         {
           if (localRiverMonsters.getY() > this.playerCanoe.getY()) {
@@ -96,6 +103,10 @@ public PlantesFerry()
           //this.playerCanoe.collision(false, false);
         }
       }
+      
+      
+      
+      
     }
   }
   
@@ -103,6 +114,8 @@ public PlantesFerry()
   {
     paramSpriteBatch.setColor(Color.WHITE);
     super.draw(paramSpriteBatch, paramFloat);
+    
+    
     // Start current in game timer
 	timer.start();
 	batch = new SpriteBatch();

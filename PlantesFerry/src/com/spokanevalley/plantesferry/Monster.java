@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
-public class RiverMonster
+public class Monster
   extends Actor
 {
   private Rectangle bounds = new Rectangle();
@@ -15,27 +15,24 @@ public class RiverMonster
   /*
    * Creates a River Monster and renders it a color based on 4 different possible colors.
    */
-  public RiverMonster(float paramFloat1, float paramFloat2)
+  public Monster(float paramFloat1, float paramFloat2)
   {
-    setWidth(160.0F);
-    setHeight(85.0F);
+    setWidth(Assets.monster.getRegionWidth());
+    setHeight(Assets.monster.getRegionHeight());
     setPosition(paramFloat1, paramFloat2 - getHeight() / 2.0F);
     
-    int i = MathUtils.random(0, 3);
+    int i = MathUtils.random(0, 2);
     if (i == 0) {
-      setColor(Color.RED);
+      setColor(Color.PINK);
     }
     if (i == 1) {
       setColor(Color.GREEN);
     }
     if (i == 2) {
-      setColor(Color.BLUE);
+      setColor(Color.YELLOW);
     }
-    if (i == 3) {
-      setColor(Color.ORANGE);
-    }
-    
-    addAction(Actions.moveTo(-getWidth(), getY(), MathUtils.random(4.0F, 6.0F)));
+    // Adjust speed of Monsters here
+    addAction(Actions.moveTo(-getWidth(), getY(), MathUtils.random(2.5F, 6.0F)));
   }// End RiverMonsters Constructor
   
   /*
@@ -85,7 +82,7 @@ public class RiverMonster
   {
     paramSpriteBatch.setColor(getColor().r, getColor().g, getColor().b, getColor().a);
 
-    paramSpriteBatch.draw(Assets.obstruction1, getX(), getY(), getWidth() / 2.0F, getHeight() / 2.0F, getWidth(), getHeight(), 1.0F, 1.0F, getRotation());
+    paramSpriteBatch.draw(Assets.monster, getX(), getY(), getWidth() / 2.0F, getHeight() / 2.0F, getWidth(), getHeight(), 1.0F, 1.0F, getRotation());
   }
   
   public Rectangle getBounds()

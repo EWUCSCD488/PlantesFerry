@@ -1,0 +1,33 @@
+
+texture.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+underwater
+  rotate: false
+  xy: 1, 11
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+monster
+  rotate: false
+  xy: 803, 427
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: 64
+waterdino
+  rotate: false
+  xy: 803, 361
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+lights
+  rotate: false
+  xy: 1, 1
+  size: 63, 8
+  orig: 63, 8
+  offset: 0, 0
+  index: 64

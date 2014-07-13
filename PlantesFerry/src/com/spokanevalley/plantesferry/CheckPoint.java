@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 public class CheckPoint extends Actor{
 
 	  private Rectangle bounds = new Rectangle();
+	  GameTimer timer;
 	  
 	  /*
 	   * Creates a CheckPoint object
@@ -41,7 +42,22 @@ public class CheckPoint extends Actor{
 	  public void collision(boolean paramBoolean1, boolean paramBoolean2)
 	  {
 	    clearActions();
+	    Assets.checkpointSound.stop();
 	    Assets.checkpointSound.play();
+	    //timer.addTime();
+	    addAction(Actions.fadeOut(1.0F));
+	    if ((paramBoolean1) && (paramBoolean2)) {
+	        addAction(Actions.sequence(Actions.parallel(Actions.rotateBy(-360.0F, 1.5F), Actions.moveBy(200.0F, 200.0F, 1.5F)), Actions.removeActor()));
+	      }
+	      if ((paramBoolean1) && (!paramBoolean2)) {
+	        addAction(Actions.sequence(Actions.parallel(Actions.rotateBy(360.0F, 1.5F), Actions.moveBy(200.0F, -200.0F, 1.5F)), Actions.removeActor()));
+	      }
+	      if ((!paramBoolean1) && (paramBoolean2)) {
+	        addAction(Actions.sequence(Actions.parallel(Actions.rotateBy(360.0F, 1.5F), Actions.moveBy(-200.0F, 200.0F, 1.5F)), Actions.removeActor()));
+	      }
+	      if ((!paramBoolean1) && (!paramBoolean2)) {
+	        addAction(Actions.sequence(Actions.parallel(Actions.rotateBy(-360.0F, 1.5F), Actions.moveBy(-200.0F, -200.0F, 1.5F)), Actions.removeActor()));
+	      }
 	    // TODO: Setup timer restart on collision.
 	  }
 	  
