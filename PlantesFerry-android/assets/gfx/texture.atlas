@@ -5,29 +5,36 @@ filter: Nearest,Nearest
 repeat: none
 underwater
   rotate: false
-  xy: 1, 11
+  xy: 1, 1
   size: 800, 480
   orig: 800, 480
   offset: 0, 0
   index: -1
-monster
+monster64
   rotate: false
-  xy: 803, 427
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: 64
-waterdino
-  rotate: false
-  xy: 803, 361
+  xy: 803, 417
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-lights
+waterdino
   rotate: false
-  xy: 1, 1
-  size: 63, 8
-  orig: 63, 8
+  xy: 803, 351
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
-  index: 64
+  index: -1
+lights64
+  rotate: false
+  xy: 869, 418
+  size: 8, 63
+  orig: 8, 63
+  offset: 0, 0
+  index: -1
+monster32
+  rotate: false
+  xy: 803, 317
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

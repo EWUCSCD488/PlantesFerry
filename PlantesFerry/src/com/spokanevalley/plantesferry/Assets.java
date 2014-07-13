@@ -39,8 +39,8 @@ public class Assets
     /* Load Character / Background Sprites */
     playerDino = atlas.findRegion("waterdino");
     underwaterbg = atlas.findRegion("underwater");
-    monster = atlas.findRegion("monster");
-    checkpoint = atlas.findRegion("lights");
+    monster = atlas.findRegion("monster64");
+    checkpoint = atlas.findRegion("lights64");
   }
 }
 // End Assets

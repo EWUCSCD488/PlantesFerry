@@ -7,13 +7,12 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
-public class Monster
-  extends Actor
-{
+public class Monster extends Actor {
   private Rectangle bounds = new Rectangle();
+  GameTimer timer = new GameTimer();
   
   /*
-   * Creates a River Monster and renders it a color based on 4 different possible colors.
+   * Creates a River Monster and renders it a color based on 3 different possible colors.
    */
   public Monster(float paramFloat1, float paramFloat2)
   {
@@ -31,8 +30,8 @@ public class Monster
     if (i == 2) {
       setColor(Color.YELLOW);
     }
-    // Adjust speed of Monsters here
-    addAction(Actions.moveTo(-getWidth(), getY(), MathUtils.random(2.5F, 6.0F)));
+    // Adjust speed of Monsters here :(1.5, 4.5) = Most Balanced Speed
+    addAction(Actions.moveTo(-getWidth(), getY(), MathUtils.random(2.0F, 4.0F)));
   }// End RiverMonsters Constructor
   
   /*
@@ -59,6 +58,7 @@ public class Monster
     Assets.checkpointSound.play();
     addAction(Actions.rotateBy(360));
     addAction(Actions.fadeOut(1.0F));
+   
     
     if ((paramBoolean1) && (paramBoolean2)) {
       addAction(Actions.sequence(Actions.parallel(Actions.rotateBy(-360.0F, 1.5F), Actions.moveBy(200.0F, 200.0F, 1.5F)), Actions.removeActor()));

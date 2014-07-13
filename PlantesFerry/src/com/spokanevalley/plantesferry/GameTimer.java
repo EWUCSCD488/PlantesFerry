@@ -14,19 +14,19 @@ public class GameTimer {
 	
 	public GameTimer()
 	{
-		this.startTime = 6000;
+		this.startTime = 0;
 	}
 	
 	/*
 	 * Starts the current game timer
 	 */
 	public void start() {
-		if(this.startTime <= 0)
-			this.startTime = 0;
-		this.startTime--;
+		this.startTime++;
 		delay(1);
 	}
-	
+	/*
+	 * Adds 3 Seconds to the game timer
+	 */
 	public void addTime() {
 		this.startTime += 300;
 	}
@@ -49,7 +49,7 @@ public class GameTimer {
 	 * Resets the timer back to 60 seconds
 	 */
 	public void reset() {
-		this.startTime = 6000;
+		this.startTime = 0;
 	}
 	
 	/*

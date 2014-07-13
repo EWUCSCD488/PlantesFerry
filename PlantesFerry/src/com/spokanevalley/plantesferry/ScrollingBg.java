@@ -15,7 +15,7 @@ public ScrollingBg(float paramFloat1, float paramFloat2)
 	setWidth(Assets.underwaterbg.getRegionWidth());
 	setHeight(Assets.underwaterbg.getRegionHeight());
     setPosition(paramFloat1, 0.0F);
-    addAction(Actions.forever(Actions.sequence(Actions.moveTo(0.0F, 0.0F, 30.0F), Actions.moveTo(Assets.underwaterbg.getRegionWidth(), 0.0F))));
+    addAction(Actions.forever(Actions.sequence(Actions.moveTo(0.0F, 0.0F, 18.0F), Actions.moveTo(Assets.underwaterbg.getRegionWidth(), 0.0F))));
 }
   
   public void draw(SpriteBatch paramSpriteBatch, float paramFloat)

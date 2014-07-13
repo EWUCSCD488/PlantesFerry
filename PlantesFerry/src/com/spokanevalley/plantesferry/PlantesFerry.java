@@ -58,10 +58,16 @@ public PlantesFerry()
     this.lastMonsterSpawnTime = TimeUtils.nanoTime();
   }
   
+  /*
+   * Iterate through the Arraylist of Monsters
+   * Remove Monsters that leave the rectangle bounds
+   * Check for collision between player and Monster 
+   */
   public void act(float paramFloat)
   {	
     super.act(paramFloat);
-    if ((float)(TimeUtils.nanoTime() - this.lastMonsterSpawnTime) > 0.9E+009F) {
+    // Change monster spawn time here
+    if ((float)(TimeUtils.nanoTime() - this.lastMonsterSpawnTime) > 0.8E+009F) {
       spawnRiverMonster();
     }
     
@@ -87,8 +93,10 @@ public PlantesFerry()
         monsterIterator.remove();
         if (localRiverMonsters.getX() > this.playerCanoe.getX())
         {
+        	//timer.addTime();// REMOVE
           if (localRiverMonsters.getY() > this.playerCanoe.getY()) {
             localRiverMonsters.collision(true, true);
+            
             //this.playerCanoe.collision(true, true);
           } else {
             localRiverMonsters.collision(true, false);
@@ -109,7 +117,9 @@ public PlantesFerry()
       
     }
   }
-  
+  /*
+   * Draws the in game sprites as well as the timer font
+   */
   public void draw(SpriteBatch paramSpriteBatch, float paramFloat)
   {
     paramSpriteBatch.setColor(Color.WHITE);
@@ -124,7 +134,7 @@ public PlantesFerry()
 	// Display timer font on screen
 	batch.begin();
 	timerFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-	timerFont.setScale(2.0f);
+	timerFont.setScale(2.5f);
 	timerFont.draw(batch, timer.toString(), 25, 160);
 	batch.end();
   }

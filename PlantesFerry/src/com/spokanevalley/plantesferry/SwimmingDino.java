@@ -30,6 +30,7 @@ public class SwimmingDino
   /*
    * Divides the rectangle container into 3 rows.
    * This allows the user to move between these 3 rows upon swiping.
+   * The speed of switching a row is 0.35
    */
   private void moveToLane(int paramInt)
   {
@@ -41,17 +42,17 @@ public class SwimmingDino
     case 0: 
       float f3 = getX();
       this.plantesferry.getClass();
-      addAction(Actions.moveTo(f3, 90.0F - getHeight() / 2.0F, 0.5F));
+      addAction(Actions.moveTo(f3, 90.0F - getHeight() / 2.0F, 0.35F));
       return;
     case 1: 
       float f2 = getX();
       this.plantesferry.getClass();
-      addAction(Actions.moveTo(f2, 240.0F - getHeight() / 2.0F, 0.5F));
+      addAction(Actions.moveTo(f2, 240.0F - getHeight() / 2.0F, 0.35F));
       return;
     case 2:
       float f1 = getX();
       this.plantesferry.getClass();
-      addAction(Actions.moveTo(f1, 390.0F - getHeight() / 2.0F, 0.5F));
+      addAction(Actions.moveTo(f1, 390.0F - getHeight() / 2.0F, 0.35F));
       return;
     }
   }
