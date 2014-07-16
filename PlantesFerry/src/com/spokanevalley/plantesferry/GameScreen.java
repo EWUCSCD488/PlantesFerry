@@ -19,7 +19,7 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
     this.stage.addActor(this.plantesferry);
     
 	this.timerFont = new BitmapFont(Gdx.files.internal("fonts/gamefont.fnt"),
-  			Gdx.files.internal("fonts/gamefont_0.png"), false);
+  									Gdx.files.internal("fonts/gamefont_0.png"), false);
 	paramSpriteBatch = new SpriteBatch();
   } // End Constructor
   
@@ -65,15 +65,13 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
     this.stage.act(paramFloat);
     this.stage.draw();
     
-    /*
-	this.timerFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-	
 	paramSpriteBatch.begin();
+	this.timerFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 	this.timerFont.setScale(2.5f);
-	this.timerFont.draw(paramSpriteBatch, ""+(paramFloat/1000), 125, 60);
+	this.timerFont.draw(paramSpriteBatch, ""+ Assets.score, 125, 60);
 	//this.timerFont.draw(paramSpriteBatch, ""+paramFloat, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 	paramSpriteBatch.end();
-	*/
+
   } // End render
   
   public void resize(int paramInt1, int paramInt2)

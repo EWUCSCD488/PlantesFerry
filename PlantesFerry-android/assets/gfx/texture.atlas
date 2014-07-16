@@ -10,30 +10,44 @@ underwater
   orig: 800, 480
   offset: 0, 0
   index: -1
-monster64
+apple64
   rotate: false
   xy: 803, 417
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-waterdino
+monster64
   rotate: false
   xy: 803, 351
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-lights64
+waterdino
   rotate: false
-  xy: 869, 418
-  size: 8, 63
-  orig: 8, 63
+  xy: 869, 417
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+apple48
+  rotate: false
+  xy: 803, 301
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+apple32
+  rotate: false
+  xy: 869, 383
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 monster32
   rotate: false
-  xy: 803, 317
+  xy: 935, 449
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

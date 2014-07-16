@@ -7,6 +7,7 @@
 package com.spokanevalley.plantesferry;
 
 
+
 public class GameTimer {
 	
 	long startTime;
@@ -20,7 +21,7 @@ public class GameTimer {
 	 * Starts the current game timer
 	 */
 	public void start() {
-		this.startTime++;
+		this.startTime += 1;
 	}
 	/*
 	 * Adds 3 Seconds to the game timer
@@ -46,10 +47,11 @@ public class GameTimer {
 		this.startTime = 0;
 	} // End reset
 	
+	
 	/*
 	 * Returns a 2 digit time in seconds
 	 */
 	public String toString() {
-		return "" + startTime / 100;
+		return "" + this.startTime;
 	} // End toString
 }

@@ -31,7 +31,7 @@ public class Monster extends Actor {
       setColor(Color.YELLOW);
     }
     // Adjust speed of Monsters here :(1.5, 4.5) = Most Balanced Speed
-    addAction(Actions.moveTo(-getWidth(), getY(), MathUtils.random(2.0F, 4.35F)));
+    addAction(Actions.moveTo(-getWidth(), getY(), MathUtils.random(1.85F, 3.75F)));
     
    
 
@@ -58,8 +58,8 @@ public class Monster extends Actor {
   public void collision(boolean paramBoolean1, boolean paramBoolean2)
   {
     clearActions();
-    Assets.checkpointSound.stop();
-    Assets.checkpointSound.play();
+    Assets.monsterSound.stop();
+    Assets.monsterSound.play();
     addAction(Actions.rotateBy(360));
     addAction(Actions.fadeOut(1.0F));
    

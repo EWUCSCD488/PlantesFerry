@@ -12,7 +12,9 @@ import com.badlogic.gdx.utils.TimeUtils;
 public class PlantesFerry extends Table {
 
   private long lastMonsterSpawnTime = 0L;
+  private long lastAppleSpawnTime = 0L;
   private Array <Monster> monsters;
+  private Array <Apple> apples;
   public SwimmingDino playerCanoe;
   private ScrollingBg river;
   public final float row1 = 90.0F;
@@ -29,12 +31,14 @@ public class PlantesFerry extends Table {
 	// Bounds
     setBounds(0.0F, 0.0F, 800.0F, 480.0F);
     setClip(true);
-    // Characters and Background
+    // Character and Background
     this.river = new ScrollingBg(getWidth(), getHeight());
     addActor(this.river);
     this.playerCanoe = new SwimmingDino(this);
     addActor(this.playerCanoe);
+    // Monster and Apple ArrayList
     this.monsters = new Array<Monster>();
+    this.apples = new Array<Apple>();
     
   } // End PlantesFerry Constructor
 
@@ -58,6 +62,23 @@ public class PlantesFerry extends Table {
     this.lastMonsterSpawnTime = TimeUtils.nanoTime();
   } // End spawnRiverMonster
   
+  private void spawnApple()
+  {
+    int rand = MathUtils.random(0, 2);
+    float row = 0.0F;
+    if (rand == 0)
+    	row = 90.0F;
+    if (rand == 1)
+    	row = 240.0F;
+    if (rand == 2)
+    	row = 390.0F;
+   
+    Apple localApple = new Apple(getWidth(), row);
+    this.apples.add(localApple);
+    addActor(localApple);
+    this.lastAppleSpawnTime = TimeUtils.nanoTime();
+  } // End spawnApple
+  
   /*
    * Iterate through the Arraylist of Monsters
    * Remove Monsters that leave the rectangle bounds
@@ -68,24 +89,36 @@ public class PlantesFerry extends Table {
     super.act(paramFloat);
     
     // Change monster spawn time here : 0.75E = current time
-    if ((float)(TimeUtils.nanoTime() - this.lastMonsterSpawnTime) > 0.75E+009F)
+    if ((float)(TimeUtils.nanoTime() - this.lastMonsterSpawnTime) > 0.85E+009F)
     	spawnRiverMonster();
+    // Change apple spawn time here : 0.45E = current time
+    if ((float)(TimeUtils.nanoTime() - this.lastAppleSpawnTime) > 0.40E+009F)
+    	spawnApple();
 
     Iterator<Monster> monsterIterator = this.monsters.iterator();
+    
+    Iterator<Apple> appleIterator = this.apples.iterator();
+    
     // Iterate and handle collisions / out of bound elements
     for (;;)
-    {    	
+    { 
+      if (!appleIterator.hasNext())
+      	  return;
       if (!monsterIterator.hasNext())
     	  return;
+
     
       Monster localRiverMonster = (Monster)monsterIterator.next();
       
-      // Check if monster is outside of bounds
+      Apple localApple = (Apple)appleIterator.next();
+      
+      // Check bounds
+      boundsCheck2(localApple,appleIterator);
       boundsCheck(localRiverMonster, monsterIterator);
-
-      // Check collision between monster and player
+      // Check collision
+      collisionCheck2(localApple, appleIterator);
       collisionCheck(localRiverMonster, monsterIterator);
-        
+      
     } // End continuous for loop
   } // End act
   
@@ -97,7 +130,6 @@ public class PlantesFerry extends Table {
       if (localRiverMonster.getBounds().overlaps(this.playerCanoe.getBounds())) {
     	  
         monsterIterator.remove();
-        System.out.println("Size: " + this.monsters.size); // Print size --> REMOVE
         
         if (localRiverMonster.getX() > this.playerCanoe.getX()) {
         
@@ -131,10 +163,56 @@ public class PlantesFerry extends Table {
       {
         monsterIterator.remove();
         removeActor(localRiverMonster);
-        System.out.println("Size: " + this.monsters.size); // Print size --> REMOVE
       } // End if out of bounds check
 	  
   } // End boundsCheck
+  
+  
+  /*
+   * Checks collision between monster and player.
+   * Upon collision, the monster is removed.
+   */
+  private void collisionCheck2(Apple localApple, Iterator<Apple> appleIterator) {
+      if (localApple.getBounds().overlaps(this.playerCanoe.getBounds())) {
+    	  
+        appleIterator.remove();
+        
+        if (localApple.getX() > this.playerCanoe.getX()) {
+        
+          if (localApple.getY() > this.playerCanoe.getY()) {
+        	  localApple.collision(true, true);
+            
+            //this.playerCanoe.collision(true, true);
+          } else {
+        	  localApple.collision(true, false);
+            //this.playerCanoe.collision(true, false);
+          }
+        }
+        else if (localApple.getY() > this.playerCanoe.getY()) {
+        	localApple.collision(false, true);
+          //this.playerCanoe.collision(false, true);
+        } else {
+          localApple.collision(false, false);
+          //this.playerCanoe.collision(false, false);
+        }
+      } // End if collision check 
+      
+  } // End collisionCheck
+  
+  /*
+   * Checks if a monster is outside of the set rectangle bounds.
+   * Upon being out of bounds, the monster is removed.
+   */
+  private void boundsCheck2(Apple localApple, Iterator<Apple> appleIterator) {
+      
+	  if (localApple.getBounds().x + localApple.getWidth() < 0.1F)
+      {
+        appleIterator.remove();
+      } // End if out of bounds check
+	  
+  } // End boundsCheck
+  
+  
   
   /*
    * Draws the in game sprites as well as the timer font
