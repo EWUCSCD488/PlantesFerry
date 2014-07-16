@@ -2,9 +2,7 @@ package com.spokanevalley.plantesferry;
 
 import java.util.Iterator;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -20,15 +18,11 @@ public class PlantesFerry extends Table {
   public final float row1 = 90.0F;
   public final float row2 = 240.0F;
   public final float row3 = 390.0F;
-  GameTimer timer;
-  BitmapFont timerFont;
-  SpriteBatch batch;
 
   /*
    * Constructor for PlantesFerry Game
    * Sets the bounds, and enable content clipping
    * Adds the river, player, and array of Monsters
-   * Initializes the game timer
    */
   public PlantesFerry()
   {
@@ -42,23 +36,6 @@ public class PlantesFerry extends Table {
     addActor(this.playerCanoe);
     this.monsters = new Array<Monster>();
     
-    this.batch = new SpriteBatch();
-	this.timerFont = new BitmapFont(Gdx.files.internal("fonts/gamefont.fnt"),
-	         			  			Gdx.files.internal("fonts/gamefont_0.png"), false);
-    // Timer
-    /*
-    this.timer = new GameTimer();
-	this.timer.start();
-	this.batch = new SpriteBatch();
-	this.timerFont = new BitmapFont(Gdx.files.internal("fonts/gamefont.fnt"),
-	         			  			Gdx.files.internal("fonts/gamefont_0.png"), false);
-	this.batch.begin();
-	this.timerFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-	this.timerFont.setScale(2.5f);
-	this.timerFont.draw(this.batch, this.timer.toString(), 25, 160);
-	this.batch.end();
-	this.batch.dispose();
-	*/
   } // End PlantesFerry Constructor
 
   /*

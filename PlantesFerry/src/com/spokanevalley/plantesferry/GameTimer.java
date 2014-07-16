@@ -6,8 +6,6 @@
 
 package com.spokanevalley.plantesferry;
 
-import com.badlogic.gdx.utils.Timer;
-import com.badlogic.gdx.utils.Timer.Task;
 
 public class GameTimer {
 	
@@ -23,7 +21,6 @@ public class GameTimer {
 	 */
 	public void start() {
 		this.startTime++;
-		delay(1);
 	}
 	/*
 	 * Adds 3 Seconds to the game timer
@@ -48,18 +45,6 @@ public class GameTimer {
 	public void reset() {
 		this.startTime = 0;
 	} // End reset
-	
-	/*
-	 * Sets a 1 second delay on the current timer
-	 */
-	public void delay(long delayMillis) {
-		float delay = delayMillis;
-		Timer.schedule(new Task(){
-		    @Override
-		    public void run() {
-		    }
-		}, delay);
-	} // End delay
 	
 	/*
 	 * Returns a 2 digit time in seconds

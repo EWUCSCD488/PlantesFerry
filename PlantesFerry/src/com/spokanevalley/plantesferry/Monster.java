@@ -1,8 +1,6 @@
 package com.spokanevalley.plantesferry;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -12,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 public class Monster extends Actor {
 
   private Rectangle bounds = new Rectangle();
-  BitmapFont timerFont;
   
   /*
    * Creates a River Monster and renders it a color based on 3 different possible colors.
