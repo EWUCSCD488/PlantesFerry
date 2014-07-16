@@ -109,10 +109,15 @@ public class SwimmingDino extends Actor {
    */
   public void collision(boolean paramBoolean1, boolean paramBoolean2)
   {
-    clearActions();
-    addAction(Actions.rotateBy(360));
-    addAction(Actions.fadeOut(1.0F));
-    addAction(Actions.removeActor());
+    Assets.lives--;
+    if(Assets.lives < 1)
+    {
+    	Assets.lives = 0;
+        //clearActions();
+        //addAction(Actions.rotateBy(360));
+        //addAction(Actions.fadeOut(1.0F));
+        //addAction(Actions.removeActor());
+    }
     
     //TODO: ADD message requesting to play again
   } // End collision

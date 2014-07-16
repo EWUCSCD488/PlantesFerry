@@ -17,13 +17,19 @@ public class Assets {
   public static Sound appleSound;
   public static Sound monsterSound;
   public static long score;
+  public static int lives;
 
-  
+  /*
+   * Dispose the current image atlas.
+   */
   public static void dispose()
   {
     atlas.dispose();
   } // End dispose
   
+  /*
+   * Load the image atlas, audio, score, and sprite images.
+   */
   public static void load()
   {
 	/* Load Image Atlas */
@@ -39,6 +45,12 @@ public class Assets {
     underwaterbg = atlas.findRegion("underwater");
     monster = atlas.findRegion("monster64");
     apple = atlas.findRegion("apple32");
+    
+    /* Set Score */
+    score = 0;
+    /* Set Lives */
+    lives = 3;
+    
   } // End load
   
 } // End Assets

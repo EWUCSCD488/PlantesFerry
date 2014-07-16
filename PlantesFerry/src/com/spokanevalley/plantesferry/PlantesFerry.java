@@ -135,19 +135,18 @@ public class PlantesFerry extends Table {
         
           if (localRiverMonster.getY() > this.playerCanoe.getY()) {
             localRiverMonster.collision(true, true);
-            
-            //this.playerCanoe.collision(true, true);
+            this.playerCanoe.collision(true, true);
           } else {
             localRiverMonster.collision(true, false);
-            //this.playerCanoe.collision(true, false);
+            this.playerCanoe.collision(true, false);
           }
         }
         else if (localRiverMonster.getY() > this.playerCanoe.getY()) {
           localRiverMonster.collision(false, true);
-          //this.playerCanoe.collision(false, true);
+          this.playerCanoe.collision(false, true);
         } else {
           localRiverMonster.collision(false, false);
-          //this.playerCanoe.collision(false, false);
+          this.playerCanoe.collision(false, false);
         }
       } // End if collision check 
       
