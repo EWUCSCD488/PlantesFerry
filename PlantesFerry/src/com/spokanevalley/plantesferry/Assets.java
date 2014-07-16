@@ -3,12 +3,11 @@ package com.spokanevalley.plantesferry;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class Assets
-{
+public class Assets {
+	
   public static TextureAtlas atlas;
   public static TextureRegion playerDino;
   public static TextureRegion monster;
@@ -17,14 +16,12 @@ public class Assets
   public static Music backgroundMusic;
   public static Sound checkpointSound;
   public static Sound monsterSound;
-  public static BitmapFont timerFont;
-  public static BitmapFont scoreFont;
 
   
   public static void dispose()
   {
     atlas.dispose();
-  }
+  } // End dispose
   
   public static void load()
   {
@@ -41,6 +38,6 @@ public class Assets
     underwaterbg = atlas.findRegion("underwater");
     monster = atlas.findRegion("monster64");
     checkpoint = atlas.findRegion("lights64");
-  }
-}
-// End Assets
+  } // End load
+  
+} // End Assets

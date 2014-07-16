@@ -5,9 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
-public class SwimmingDino
-  extends Actor
-{
+public class SwimmingDino extends Actor {
   private Rectangle bounds = new Rectangle();
   private PlantesFerry plantesferry;
   private int row;
@@ -25,7 +23,7 @@ public class SwimmingDino
     this.row = 1;
     paramPlantesFerry.getClass();
     setPosition(100.0F, 240.0F - getHeight() / 2.0F);
-  }
+  } // End Constructor
   
   /*
    * Divides the rectangle container into 3 rows.
@@ -54,19 +52,22 @@ public class SwimmingDino
       this.plantesferry.getClass();
       addAction(Actions.moveTo(f1, 390.0F - getHeight() / 2.0F, 0.35F));
       return;
-    }
-  }
+    } // End switch
+  } // End moveToLane
   
+  /*
+   * Updates the bounds of the game screen
+   */
   private void updateBounds()
   {
     this.bounds.set(getX(), getY(), getWidth(), getHeight());
-  }
+  } // End updateBounds
   
   public void act(float paramFloat)
   {
     super.act(paramFloat);
     updateBounds();
-  }
+  } // End act
   
   /*
    * Draws the swimming dinosaur
@@ -75,7 +76,7 @@ public class SwimmingDino
   {
     paramSpriteBatch.setColor(getColor().r, getColor().g, getColor().b, getColor().a);
     paramSpriteBatch.draw(Assets.playerDino, getX(), getY(), getWidth() / 2.0F, getHeight() / 2.0F, getWidth(), getHeight(), 1.0F, 1.0F, getRotation());
-  }
+  } // End draw
   
   /*
    * Get bounds of rectangle container
@@ -83,27 +84,25 @@ public class SwimmingDino
   public Rectangle getBounds()
   {
     return this.bounds;
-  }
+  } // End getBounds
   
   /* 
    * Move player up if possible
    */
   public void tryMoveDown()
   {
-    if ((getActions().size == 0) && (this.row != 0)) {
+    if ((getActions().size == 0) && (this.row != 0))
       moveToLane(-1 + this.row);
-    }
-  }
+  } // End tryMoveDown
   
   /*
    * Move player down if possible
    */
   public void tryMoveUp()
   {
-    if ((getActions().size == 0) && (this.row != 2)) {
+    if ((getActions().size == 0) && (this.row != 2))
       moveToLane(1 + this.row);
-    }
-  }
+  } // End tryMoveUp
   
   /*
    * Upon collision, removes the main character from the game.
@@ -118,4 +117,4 @@ public class SwimmingDino
     //TODO: ADD message requesting to play again
   } // End collision
   
-} // End class
+} // End SwimmingDino
