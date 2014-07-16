@@ -66,6 +66,7 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
     this.stage.draw();
     
 	paramSpriteBatch.begin();
+	paramSpriteBatch.draw(Assets.apple, 85, 15);
 	this.timerFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 	this.timerFont.setScale(2.5f);
 	this.timerFont.draw(paramSpriteBatch, ""+ Assets.score, 125, 60);

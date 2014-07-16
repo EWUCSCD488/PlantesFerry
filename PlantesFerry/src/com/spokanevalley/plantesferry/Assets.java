@@ -32,7 +32,7 @@ public class Assets {
     /* Load Sound Effects */
     backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("sfx/rainbowbunchie.mp3"));
     appleSound = Gdx.audio.newSound(Gdx.files.internal("sfx/bite.wav"));
-    monsterSound = Gdx.audio.newSound(Gdx.files.internal("sfx/FX051.mp3"));
+    monsterSound = Gdx.audio.newSound(Gdx.files.internal("sfx/hurt.wav"));
     
     /* Load Character / Background Sprites */
     playerDino = atlas.findRegion("waterdino");
