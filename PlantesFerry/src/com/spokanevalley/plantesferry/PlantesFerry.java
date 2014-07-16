@@ -41,7 +41,12 @@ public class PlantesFerry extends Table {
     this.playerCanoe = new SwimmingDino(this);
     addActor(this.playerCanoe);
     this.monsters = new Array<Monster>();
+    
+    this.batch = new SpriteBatch();
+	this.timerFont = new BitmapFont(Gdx.files.internal("fonts/gamefont.fnt"),
+	         			  			Gdx.files.internal("fonts/gamefont_0.png"), false);
     // Timer
+    /*
     this.timer = new GameTimer();
 	this.timer.start();
 	this.batch = new SpriteBatch();
@@ -53,6 +58,7 @@ public class PlantesFerry extends Table {
 	this.timerFont.draw(this.batch, this.timer.toString(), 25, 160);
 	this.batch.end();
 	this.batch.dispose();
+	*/
   } // End PlantesFerry Constructor
 
   /*
@@ -83,6 +89,7 @@ public class PlantesFerry extends Table {
   public void act(float paramFloat)
   {	
     super.act(paramFloat);
+    
     // Change monster spawn time here : 0.75E = current time
     if ((float)(TimeUtils.nanoTime() - this.lastMonsterSpawnTime) > 0.75E+009F)
     	spawnRiverMonster();
@@ -157,21 +164,8 @@ public class PlantesFerry extends Table {
    */
   public void draw(SpriteBatch paramSpriteBatch, float paramFloat)
   {
-    //paramSpriteBatch.setColor(Color.WHITE);
+    paramSpriteBatch.setColor(Color.WHITE);
     super.draw(paramSpriteBatch, paramFloat);
-    /*
-    // Start current in game timer
-	timer.start();
-	batch = new SpriteBatch();
-	timerFont = new BitmapFont(Gdx.files.internal("fonts/gamefont.fnt"),
-	         Gdx.files.internal("fonts/gamefont_0.png"), false);
-	// Display timer font on screen
-	batch.begin();
-	timerFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-	timerFont.setScale(2.5f);
-	timerFont.draw(batch, timer.toString(), 25, 160);
-	batch.end();
-	*/
   } // End draw
   
 } // End PlantesFerry

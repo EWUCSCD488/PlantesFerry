@@ -1,6 +1,8 @@
 package com.spokanevalley.plantesferry;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -10,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 public class Monster extends Actor {
 
   private Rectangle bounds = new Rectangle();
+  BitmapFont timerFont;
   
   /*
    * Creates a River Monster and renders it a color based on 3 different possible colors.
@@ -32,6 +35,9 @@ public class Monster extends Actor {
     }
     // Adjust speed of Monsters here :(1.5, 4.5) = Most Balanced Speed
     addAction(Actions.moveTo(-getWidth(), getY(), MathUtils.random(2.0F, 4.35F)));
+    
+   
+
   }// End RiverMonsters Constructor
   
   /*
@@ -84,6 +90,7 @@ public class Monster extends Actor {
     paramSpriteBatch.setColor(getColor().r, getColor().g, getColor().b, getColor().a);
 
     paramSpriteBatch.draw(Assets.monster, getX(), getY(), getWidth() / 2.0F, getHeight() / 2.0F, getWidth(), getHeight(), 1.0F, 1.0F, getRotation());
+
   } // End draw
   
   public Rectangle getBounds()

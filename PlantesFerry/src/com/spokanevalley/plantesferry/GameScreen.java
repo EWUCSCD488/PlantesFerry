@@ -2,6 +2,8 @@ package com.spokanevalley.plantesferry;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -9,11 +11,16 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public class GameScreen implements Screen, GestureDetector.GestureListener {
   private PlantesFerry plantesferry = new PlantesFerry();
   private Stage stage = new Stage();
-
+  BitmapFont timerFont;
+  SpriteBatch paramSpriteBatch;
   
   public GameScreen()
   {
     this.stage.addActor(this.plantesferry);
+    
+	this.timerFont = new BitmapFont(Gdx.files.internal("fonts/gamefont.fnt"),
+  			Gdx.files.internal("fonts/gamefont_0.png"), false);
+	paramSpriteBatch = new SpriteBatch();
   } // End Constructor
   
   public void dispose() {}
@@ -57,6 +64,16 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
     Gdx.gl.glClear(16384);
     this.stage.act(paramFloat);
     this.stage.draw();
+    
+    /*
+	this.timerFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+	
+	paramSpriteBatch.begin();
+	this.timerFont.setScale(2.5f);
+	this.timerFont.draw(paramSpriteBatch, ""+(paramFloat/1000), 125, 60);
+	//this.timerFont.draw(paramSpriteBatch, ""+paramFloat, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+	paramSpriteBatch.end();
+	*/
   } // End render
   
   public void resize(int paramInt1, int paramInt2)
