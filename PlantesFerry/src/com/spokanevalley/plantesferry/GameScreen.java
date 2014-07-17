@@ -15,6 +15,15 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
   SpriteBatch paramSpriteBatch;
   
   /*
+   * Represents the different types of states in the game.
+   * This allows the game to be paused, resumed, and stopped.
+   */
+  public enum GameState {
+	  PLAY,PAUSE,STOP;
+  } // End GameState
+  GameState state = GameState.PLAY;
+	
+  /*
    * Set the game stage and initialized the score font.
    */
   public GameScreen()
@@ -25,7 +34,7 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
   									Gdx.files.internal("fonts/gamefont_0.png"), false);
 	this.paramSpriteBatch = new SpriteBatch();
   } // End Constructor
-  
+ 
   /*
    * Dispose of any sprite batch used in game.
    */
@@ -57,17 +66,30 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
    * Renders and displays the background and moving sprites
    * Displays the number of lives and score
    */
-  public void render(float paramFloat)
+  public void render(float delta)
   {
-    Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 1.0F);
-    Gdx.gl.glClear(16384);
-    this.stage.act(paramFloat);
-    this.stage.draw();
-    displayStats();
+	  switch(this.state) {
+	  	case PLAY:
+	  		Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 1.0F);
+	  		Gdx.gl.glClear(16384);
+	  		this.stage.act(delta);
+	  		this.stage.draw();
+	  		displayStats();
+	  		break;
+	  	case PAUSE:
+	  		pause();
+	  		break;
+	  	case STOP:
+	  		dispose();
+	  		break;
+	  	default:
+	  		break;
+	}
   } // End render
   
   /*
    * Displays the current score and number of lives.
+   * Also plays the background music.
    */
   private void displayStats() {
 	    // Display Apple Icon and Score (Bottom Left)
@@ -76,6 +98,7 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
 		this.scoreFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 		this.scoreFont.setScale(2.5f);
 		this.scoreFont.draw(this.paramSpriteBatch, ""+ Assets.score, 125, 60);
+		//this.scoreFont.draw(this.paramSpriteBatch, ""+ Assets.score, (Gdx.graphics.getWidth() / 3), (Gdx.graphics.getHeight() / 4));
 		// Display Lives (Top Right)
 		if(Assets.lives > 0)
 		{
@@ -95,6 +118,10 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
 		}
 		//this.timerFont.draw(paramSpriteBatch, ""+paramFloat, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 		this.paramSpriteBatch.end();
+		
+	    // Set background music and loop it forever
+	    Assets.backgroundMusic.play();
+	    Assets.backgroundMusic.setLooping(true);
   }
   
   /*
@@ -106,9 +133,24 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
     this.stage.getCamera().translate(-this.stage.getGutterWidth(), -this.stage.getGutterHeight(), 0.0F);
   } // End resize
   
-  public void resume() {}
-  
-  public void pause() {}
+  /*
+   * Pauses the background music.
+   * Displays the menu background image with text.
+   * User must tap once to resume game.
+   */
+  public void pause() {
+	  Assets.backgroundMusic.pause();
+	  this.paramSpriteBatch.begin();
+	  paramSpriteBatch.draw(Assets.menubg, 0.0F, 0.0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+	  this.scoreFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+	  this.scoreFont.setScale(2.5f);
+	  this.scoreFont.draw(this.paramSpriteBatch, "Paused", Gdx.graphics.getWidth() / 2.0F, Gdx.graphics.getHeight() / 2.0F);
+	  this.paramSpriteBatch.end();
+	  this.paramSpriteBatch.begin();
+	  this.scoreFont.setScale(1.5f);
+	  this.scoreFont.draw(this.paramSpriteBatch, "Tap Once to resume", (Gdx.graphics.getWidth() / 2.0F) - 50.0F, (Gdx.graphics.getHeight() / 2.0F) - 100.0F);
+	  this.paramSpriteBatch.end();
+  } // End pause
   
   /*
    * Sets the Input Processor to handle touch events.
@@ -117,19 +159,24 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
   public void show()
   {
     Gdx.input.setInputProcessor(new GestureDetector(this));
-    // Set background music and loop it forever
-    Assets.backgroundMusic.play();
-    Assets.backgroundMusic.setLooping(true);
   } // End show()
   
+  public boolean tap(float paramFloat1, float paramFloat2, int tapNum, int paramInt2) { 
+	  if(tapNum > 1)
+		  this.state = GameState.PAUSE;
+	  if(tapNum == 1)
+		  this.state = GameState.PLAY;
+	  return false; 
+  } // End tap
+  
   /* Unimplemented methods */
+  public void resume() {}
+  
   public boolean longPress(float paramFloat1, float paramFloat2) { return false; } // End longPress
   
   public boolean pan(float paramFloat1, float paramFloat2, float paramFloat3, float paramFloat4) { return false; } // End pan
   
   public boolean pinch(Vector2 paramVector21, Vector2 paramVector22, Vector2 paramVector23, Vector2 paramVector24) { return false; } // End pinch
-  
-  public boolean tap(float paramFloat1, float paramFloat2, int paramInt1, int paramInt2) { return false; } // End tap
   
   public boolean touchDown(float paramFloat1, float paramFloat2, int paramInt1, int paramInt2) { return false; } // End touchDown
   

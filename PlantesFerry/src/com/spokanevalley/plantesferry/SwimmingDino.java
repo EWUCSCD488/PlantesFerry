@@ -9,6 +9,7 @@ public class SwimmingDino extends Actor {
   private Rectangle bounds = new Rectangle();
   private PlantesFerry plantesferry;
   private int row;
+  GameOver gameover;
   
   /*
    * Constructor for the swimming dinosaur
@@ -113,6 +114,7 @@ public class SwimmingDino extends Actor {
     if(Assets.lives < 1)
     {
     	Assets.lives = 0;
+    	gameover = new GameOver();
         //clearActions();
         //addAction(Actions.rotateBy(360));
         //addAction(Actions.fadeOut(1.0F));

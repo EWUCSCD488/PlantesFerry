@@ -7,15 +7,18 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Assets {
-	
-  public static TextureAtlas atlas;
+  /* Atlas/Texture Region Declarations */
+  private static TextureAtlas atlas;
   public static TextureRegion playerDino;
   public static TextureRegion monster;
   public static TextureRegion apple;
   public static TextureRegion underwaterbg;
+  public static TextureRegion menubg;
+  /* Music/Sound Effect Declarations */
   public static Music backgroundMusic;
   public static Sound appleSound;
   public static Sound monsterSound;
+  /* Score/Life Declaractions */
   public static long score;
   public static int lives;
 
@@ -41,9 +44,10 @@ public class Assets {
     monsterSound = Gdx.audio.newSound(Gdx.files.internal("sfx/hurt.wav"));
     
     /* Load Character / Background Sprites */
-    playerDino = atlas.findRegion("waterdino");
     underwaterbg = atlas.findRegion("underwater");
-    monster = atlas.findRegion("monster64");
+    menubg = atlas.findRegion("menu");
+    playerDino = atlas.findRegion("waterdino");
+    monster = atlas.findRegion("seaurchin");
     apple = atlas.findRegion("apple32");
     
     /* Set Score */

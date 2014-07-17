@@ -3,51 +3,72 @@ texture.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-underwater
+menu
   rotate: false
-  xy: 1, 1
+  xy: 1, 533
   size: 800, 480
   orig: 800, 480
   offset: 0, 0
   index: -1
+underwater
+  rotate: false
+  xy: 1, 51
+  size: 800, 480
+  orig: 800, 480
+  offset: 0, 0
+  index: -1
+squidmonster
+  rotate: false
+  xy: 803, 949
+  size: 150, 64
+  orig: 150, 64
+  offset: 0, 0
+  index: -1
+whalemonster
+  rotate: false
+  xy: 803, 883
+  size: 130, 64
+  orig: 130, 64
+  offset: 0, 0
+  index: -1
+seaurchin
+  rotate: false
+  xy: 803, 817
+  size: 78, 64
+  orig: 78, 64
+  offset: 0, 0
+  index: -1
 apple64
   rotate: false
-  xy: 803, 417
+  xy: 955, 949
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 monster64
   rotate: false
-  xy: 803, 351
+  xy: 935, 883
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 waterdino
   rotate: false
-  xy: 869, 417
+  xy: 803, 751
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 apple48
   rotate: false
-  xy: 803, 301
+  xy: 1, 1
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 apple32
   rotate: false
-  xy: 869, 383
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-monster32
-  rotate: false
-  xy: 935, 449
+  xy: 883, 849
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

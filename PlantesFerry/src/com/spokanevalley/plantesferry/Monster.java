@@ -22,7 +22,7 @@ public class Monster extends Actor {
     
     int i = MathUtils.random(0, 2);
     if (i == 0) {
-      setColor(Color.PINK);
+      setColor(Color.ORANGE);
     }
     if (i == 1) {
       setColor(Color.GREEN);
@@ -33,8 +33,6 @@ public class Monster extends Actor {
     // Adjust speed of Monsters here :(1.5, 4.5) = Most Balanced Speed
     addAction(Actions.moveTo(-getWidth(), getY(), MathUtils.random(1.85F, 3.75F)));
     
-   
-
   }// End RiverMonsters Constructor
   
   /*
