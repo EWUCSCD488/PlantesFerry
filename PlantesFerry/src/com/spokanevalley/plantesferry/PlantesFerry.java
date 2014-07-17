@@ -80,9 +80,9 @@ public class PlantesFerry extends Table {
   } // End spawnApple
   
   /*
-   * Iterate through the Arraylist of Monsters
-   * Remove Monsters that leave the rectangle bounds
-   * Check for collision between player and Monster 
+   * Iterate through the Arraylists of Monsters and Apples.
+   * Remove Monsters/Apples that leave the rectangle bounds.
+   * Check for collision between player, monster, and apple. 
    */
   public void act(float paramFloat)
   {	
@@ -94,6 +94,12 @@ public class PlantesFerry extends Table {
     // Change apple spawn time here : 0.45E = current time
     if ((float)(TimeUtils.nanoTime() - this.lastAppleSpawnTime) > 0.40E+009F)
     	spawnApple();
+    // Change length of invinsibility here: 10.0E = current time
+    if ((float)(TimeUtils.nanoTime() - Assets.isInvinsibleTime) > 10.0E+009F) {
+    	Assets.isInvinsible = false;
+    	Assets.isInvinsibleTime = 0L;
+    }
+    	
 
     Iterator<Monster> monsterIterator = this.monsters.iterator();
     
@@ -158,11 +164,10 @@ public class PlantesFerry extends Table {
    */
   private void boundsCheck(Monster localRiverMonster, Iterator<Monster> monsterIterator) {
       
-	  if (localRiverMonster.getBounds().x + localRiverMonster.getWidth() < 0.1F)
-      {
+	  if (localRiverMonster.getBounds().x + localRiverMonster.getWidth() < 0.1F) {
         monsterIterator.remove();
         removeActor(localRiverMonster);
-      } // End if out of bounds check
+      }
 	  
   } // End boundsCheck
   
@@ -173,27 +178,8 @@ public class PlantesFerry extends Table {
    */
   private void collisionCheck2(Apple localApple, Iterator<Apple> appleIterator) {
       if (localApple.getBounds().overlaps(this.playerCanoe.getBounds())) {
-    	  
-        appleIterator.remove();
-        
-        if (localApple.getX() > this.playerCanoe.getX()) {
-        
-          if (localApple.getY() > this.playerCanoe.getY()) {
-        	  localApple.collision(true, true);
-            
-            //this.playerCanoe.collision(true, true);
-          } else {
-        	  localApple.collision(true, false);
-            //this.playerCanoe.collision(true, false);
-          }
-        }
-        else if (localApple.getY() > this.playerCanoe.getY()) {
-        	localApple.collision(false, true);
-          //this.playerCanoe.collision(false, true);
-        } else {
-          localApple.collision(false, false);
-          //this.playerCanoe.collision(false, false);
-        }
+    	  appleIterator.remove();
+    	  localApple.collision(true, true);
       } // End if collision check 
       
   } // End collisionCheck
@@ -203,12 +189,10 @@ public class PlantesFerry extends Table {
    * Upon being out of bounds, the monster is removed.
    */
   private void boundsCheck2(Apple localApple, Iterator<Apple> appleIterator) {
-      
-	  if (localApple.getBounds().x + localApple.getWidth() < 0.1F)
-      {
+	  if (localApple.getBounds().x + localApple.getWidth() < 0.1F) {
         appleIterator.remove();
-      } // End if out of bounds check
-	  
+	  	removeActor(localApple);
+	  }
   } // End boundsCheck
   
   

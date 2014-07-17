@@ -76,6 +76,8 @@ public class SwimmingDino extends Actor {
   public void draw(SpriteBatch paramSpriteBatch, float paramFloat)
   {
     paramSpriteBatch.setColor(getColor().r, getColor().g, getColor().b, getColor().a);
+    if(Assets.isInvinsible)
+    	paramSpriteBatch.draw(Assets.bubble, getX(), getY(), getWidth() / 2.0F, getHeight() / 2.0F, getWidth(), getHeight(), 1.0F, 1.0F, getRotation());
     paramSpriteBatch.draw(Assets.playerDino, getX(), getY(), getWidth() / 2.0F, getHeight() / 2.0F, getWidth(), getHeight(), 1.0F, 1.0F, getRotation());
   } // End draw
   
@@ -110,17 +112,19 @@ public class SwimmingDino extends Actor {
    */
   public void collision(boolean paramBoolean1, boolean paramBoolean2)
   {
+	if(!Assets.isInvinsible)
+	{
     Assets.lives--;
     if(Assets.lives < 1)
     {
     	Assets.lives = 0;
-    	gameover = new GameOver();
+    	//gameover = new GameOver();
         //clearActions();
         //addAction(Actions.rotateBy(360));
         //addAction(Actions.fadeOut(1.0F));
         //addAction(Actions.removeActor());
     }
-    
+	} // End not invinsible check
     //TODO: ADD message requesting to play again
   } // End collision
   

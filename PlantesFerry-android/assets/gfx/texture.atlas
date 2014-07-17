@@ -5,70 +5,63 @@ filter: Nearest,Nearest
 repeat: none
 menu
   rotate: false
-  xy: 1, 533
+  xy: 1, 517
   size: 800, 480
   orig: 800, 480
   offset: 0, 0
   index: -1
 underwater
   rotate: false
-  xy: 1, 51
+  xy: 1, 35
   size: 800, 480
   orig: 800, 480
   offset: 0, 0
   index: -1
-squidmonster
-  rotate: false
-  xy: 803, 949
-  size: 150, 64
-  orig: 150, 64
-  offset: 0, 0
-  index: -1
 whalemonster
   rotate: false
-  xy: 803, 883
+  xy: 803, 933
   size: 130, 64
   orig: 130, 64
   offset: 0, 0
   index: -1
 seaurchin
   rotate: false
-  xy: 803, 817
+  xy: 803, 867
   size: 78, 64
   orig: 78, 64
   offset: 0, 0
   index: -1
 apple64
   rotate: false
-  xy: 955, 949
+  xy: 935, 933
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-monster64
+bubble64
   rotate: false
-  xy: 935, 883
+  xy: 803, 801
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 waterdino
   rotate: false
-  xy: 803, 751
+  xy: 883, 867
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-apple48
-  rotate: false
-  xy: 1, 1
-  size: 48, 48
-  orig: 48, 48
-  offset: 0, 0
-  index: -1
 apple32
   rotate: false
-  xy: 883, 849
+  xy: 1, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+bubble32
+  rotate: false
+  xy: 803, 767
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

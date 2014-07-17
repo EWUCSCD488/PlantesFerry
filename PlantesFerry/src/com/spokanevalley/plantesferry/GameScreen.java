@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.TimeUtils;
 
 public class GameScreen implements Screen, GestureDetector.GestureListener {
   private PlantesFerry plantesferry = new PlantesFerry();
@@ -115,6 +116,11 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
 			}
 			if(Assets.lives == 1)
 				this.paramSpriteBatch.draw(Assets.playerDino, 1625, 1000);
+		}
+		if(Assets.isInvinsible)
+		{
+			this.paramSpriteBatch.draw(Assets.bubble, 110, 1015);
+			this.scoreFont.draw(this.paramSpriteBatch, ""+ (int)((11.0E+009F - (TimeUtils.nanoTime() - Assets.isInvinsibleTime)) / 1000000000), 125, 1075);
 		}
 		//this.timerFont.draw(paramSpriteBatch, ""+paramFloat, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 		this.paramSpriteBatch.end();
