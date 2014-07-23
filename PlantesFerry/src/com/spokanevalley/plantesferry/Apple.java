@@ -62,10 +62,11 @@ public class Apple extends Actor {
 		}
 		else
 		{
-	    Assets.appleSound.stop();
-	    Assets.appleSound.play();
-	    Assets.score++;
+			Assets.appleSound.stop();
+			Assets.appleSound.play();
+			Assets.score++;
 		}
+		
 	    addAction(Actions.fadeOut(0.1F));
 	    Actions.removeActor();
 	    

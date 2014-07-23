@@ -15,7 +15,7 @@ public class PlantesFerry extends Table {
   private long lastAppleSpawnTime = 0L;
   private Array <Monster> monsters;
   private Array <Apple> apples;
-  public SwimmingDino playerCanoe;
+  public SwimmingDino playerDino;
   private ScrollingBg river;
   public final float row1 = 90.0F;
   public final float row2 = 240.0F;
@@ -34,8 +34,8 @@ public class PlantesFerry extends Table {
     // Character and Background
     this.river = new ScrollingBg(getWidth(), getHeight());
     addActor(this.river);
-    this.playerCanoe = new SwimmingDino(this);
-    addActor(this.playerCanoe);
+    this.playerDino = new SwimmingDino(this);
+    addActor(this.playerDino);
     // Monster and Apple ArrayList
     this.monsters = new Array<Monster>();
     this.apples = new Array<Apple>();
@@ -133,26 +133,26 @@ public class PlantesFerry extends Table {
    * Upon collision, the monster is removed.
    */
   private void collisionCheck(Monster localRiverMonster, Iterator<Monster> monsterIterator) {
-      if (localRiverMonster.getBounds().overlaps(this.playerCanoe.getBounds())) {
+      if (localRiverMonster.getBounds().overlaps(this.playerDino.getBounds())) {
     	  
         monsterIterator.remove();
         
-        if (localRiverMonster.getX() > this.playerCanoe.getX()) {
+        if (localRiverMonster.getX() > this.playerDino.getX()) {
         
-          if (localRiverMonster.getY() > this.playerCanoe.getY()) {
+          if (localRiverMonster.getY() > this.playerDino.getY()) {
             localRiverMonster.collision(true, true);
-            this.playerCanoe.collision(true, true);
+            this.playerDino.collision(true, true);
           } else {
             localRiverMonster.collision(true, false);
-            this.playerCanoe.collision(true, false);
+            this.playerDino.collision(true, false);
           }
         }
-        else if (localRiverMonster.getY() > this.playerCanoe.getY()) {
+        else if (localRiverMonster.getY() > this.playerDino.getY()) {
           localRiverMonster.collision(false, true);
-          this.playerCanoe.collision(false, true);
+          this.playerDino.collision(false, true);
         } else {
           localRiverMonster.collision(false, false);
-          this.playerCanoe.collision(false, false);
+          this.playerDino.collision(false, false);
         }
       } // End if collision check 
       
@@ -171,13 +171,12 @@ public class PlantesFerry extends Table {
 	  
   } // End boundsCheck
   
-  
   /*
    * Checks collision between monster and player.
    * Upon collision, the monster is removed.
    */
   private void collisionCheck2(Apple localApple, Iterator<Apple> appleIterator) {
-      if (localApple.getBounds().overlaps(this.playerCanoe.getBounds())) {
+      if (localApple.getBounds().overlaps(this.playerDino.getBounds())) {
     	  appleIterator.remove();
     	  localApple.collision(true, true);
       } // End if collision check 
@@ -194,8 +193,6 @@ public class PlantesFerry extends Table {
 	  	removeActor(localApple);
 	  }
   } // End boundsCheck
-  
-  
   
   /*
    * Draws the in game sprites as well as the timer font

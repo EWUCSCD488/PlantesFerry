@@ -14,14 +14,6 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
   private Stage stage = new Stage();
   BitmapFont scoreFont;
   SpriteBatch paramSpriteBatch;
-  
-  /*
-   * Represents the different types of states in the game.
-   * This allows the game to be paused, resumed, and stopped.
-   */
-  public enum GameState {
-	  PLAY,PAUSE,STOP;
-  } // End GameState
   GameState state = GameState.PLAY;
 	
   /*
@@ -49,9 +41,9 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
   public boolean fling(float paramFloat1, float paramFloat2, int paramInt)
   {
     if (paramFloat2 < -100.0F)
-    	this.plantesferry.playerCanoe.tryMoveUp();
+    	this.plantesferry.playerDino.tryMoveUp();
     if (paramFloat2 > 100.0F)
-    	this.plantesferry.playerCanoe.tryMoveDown();
+    	this.plantesferry.playerDino.tryMoveDown();
     return false;
   } // End fling
   
@@ -83,9 +75,11 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
 	  	case STOP:
 	  		dispose();
 	  		break;
+	  	case RESTART:
+	  		break;
 	  	default:
 	  		break;
-	}
+	} // End switch
   } // End render
   
   /*

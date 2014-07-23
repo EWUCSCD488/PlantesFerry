@@ -63,12 +63,14 @@ public class Monster extends Actor {
   public void collision(boolean paramBoolean1, boolean paramBoolean2)
   {
     clearActions();
+    
     if(Assets.isInvinsible)
     {
     	if(getName() == rareMonster)
     		Assets.score += 6;
     	else
     		Assets.score += 3;
+    	
         Assets.invinsibleSound.stop();
         Assets.invinsibleSound.play();
         addAction(Actions.fadeOut(1.0F));
@@ -87,10 +89,10 @@ public class Monster extends Actor {
     } // End Invisible
     else
     {
-    Assets.monsterSound.stop();
-    Assets.monsterSound.play();
-    addAction(Actions.fadeOut(0.2F));
-    addAction(Actions.removeActor());
+    	Assets.monsterSound.stop();
+    	Assets.monsterSound.play();
+    	addAction(Actions.fadeOut(0.2F));
+    	addAction(Actions.removeActor());
     } // End Not Invinsible
     
   } // End collision

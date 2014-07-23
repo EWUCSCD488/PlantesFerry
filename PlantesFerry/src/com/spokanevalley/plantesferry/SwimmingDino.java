@@ -71,7 +71,7 @@ public class SwimmingDino extends Actor {
   } // End act
   
   /*
-   * Draws the swimming dinosaur
+   * Draws the swimming dinosaur and invinsibility bubble if dino collides with bubble
    */
   public void draw(SpriteBatch paramSpriteBatch, float paramFloat)
   {
