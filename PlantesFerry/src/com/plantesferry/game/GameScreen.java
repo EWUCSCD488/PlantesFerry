@@ -1,4 +1,4 @@
-package com.spokanevalley.plantesferry;
+package com.plantesferry.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -7,11 +7,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.TimeUtils;
 
 public class GameScreen implements Screen, GestureDetector.GestureListener {
-  private PlantesFerry plantesferry = new PlantesFerry();
-  private Stage stage = new Stage();
+  private PlantesFerry plantesferry;
+  private Stage stage;
   BitmapFont scoreFont;
   SpriteBatch paramSpriteBatch;
   GameState state = GameState.PLAY;
@@ -21,6 +22,8 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
    */
   public GameScreen()
   {
+	this.plantesferry = new PlantesFerry();
+	this.stage = new Stage();
     this.stage.addActor(this.plantesferry);
     
 	this.scoreFont = new BitmapFont(Gdx.files.internal("fonts/gamefont.fnt"),
@@ -32,6 +35,7 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
    * Dispose of any sprite batch used in game.
    */
   public void dispose() {
+	  this.stage.addAction(Actions.removeActor(this.plantesferry));
 	  this.paramSpriteBatch.dispose();
   } // End dispose
   
@@ -68,14 +72,20 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
 	  		this.stage.act(delta);
 	  		this.stage.draw();
 	  		displayStats();
+	  		if(Assets.lives < 1)
+	  			this.state = GameState.STOP;
 	  		break;
 	  	case PAUSE:
 	  		pause();
 	  		break;
 	  	case STOP:
-	  		dispose();
+	  		gameOver();
 	  		break;
 	  	case RESTART:
+	  		Assets.lives = 3;
+	  		Assets.score = 0;
+	  		//GameScreen game = new GameScreen();
+	  		this.state = GameState.PLAY;
 	  		break;
 	  	default:
 	  		break;
@@ -151,6 +161,21 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
 	  this.scoreFont.draw(this.paramSpriteBatch, "Tap Once to resume", (Gdx.graphics.getWidth() / 2.0F) - 50.0F, (Gdx.graphics.getHeight() / 2.0F) - 100.0F);
 	  this.paramSpriteBatch.end();
   } // End pause
+  
+  public void gameOver() {
+	  Assets.backgroundMusic.pause();
+	  this.paramSpriteBatch.begin();
+	  paramSpriteBatch.draw(Assets.menubg, 0.0F, 0.0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+	  this.scoreFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+	  this.scoreFont.setScale(2.5f);
+	  this.scoreFont.draw(this.paramSpriteBatch, "Game Over", Gdx.graphics.getWidth() / 2.0F, Gdx.graphics.getHeight() / 2.0F);
+	  this.paramSpriteBatch.end();
+	  this.paramSpriteBatch.begin();
+	  this.scoreFont.setScale(1.5f);
+	  this.scoreFont.draw(this.paramSpriteBatch, "Tap Once to restart", (Gdx.graphics.getWidth() / 2.0F) - 50.0F, (Gdx.graphics.getHeight() / 2.0F) - 100.0F);
+	  this.paramSpriteBatch.end();
+	  this.state = GameState.RESTART;
+  } // End gameOver
   
   /*
    * Sets the Input Processor to handle touch events.

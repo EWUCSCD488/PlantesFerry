@@ -1,4 +1,4 @@
-package com.spokanevalley.plantesferry;
+package com.plantesferry.game;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -9,7 +9,7 @@ public class SwimmingDino extends Actor {
   private Rectangle bounds = new Rectangle();
   private PlantesFerry plantesferry;
   private int row;
-  GameOver gameover;
+  GameState state;
   
   /*
    * Constructor for the swimming dinosaur
@@ -118,11 +118,6 @@ public class SwimmingDino extends Actor {
     if(Assets.lives < 1)
     {
     	Assets.lives = 0;
-    	//gameover = new GameOver();
-        //clearActions();
-        //addAction(Actions.rotateBy(360));
-        //addAction(Actions.fadeOut(1.0F));
-        //addAction(Actions.removeActor());
     }
 	} // End not invinsible check
     //TODO: ADD message requesting to play again
